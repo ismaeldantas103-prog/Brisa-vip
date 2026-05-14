@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Brisa Sense</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:black;
+color:white;
+}
+
+/* LOGIN */
+
+#login{
+height:100vh;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.login-box{
+background:#111;
+padding:30px;
+border-radius:25px;
+width:300px;
+border:2px solid #00ff66;
+box-shadow:0 0 25px #00ff66;
+}
+
+.login-box h1{
+text-align:center;
+margin-bottom:20px;
+color:#00ff66;
+}
+
+/* INPUT */
+
+input{
+width:100%;
+padding:14px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+background:#1b1b1b;
+color:white;
+font-size:16px;
+box-sizing:border-box;
+}
+
+/* BOTÃO */
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+background:#00ff66;
+color:black;
+font-size:18px;
+font-weight:bold;
+margin-top:15px;
+cursor:pointer;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+/* APP */
+
+#app{
+display:none;
+justify-content:center;
+align-items:center;
+background:black;
+padding:20px;
+min-height:100vh;
+}
+
+.box{
+width:320px;
+background:#111;
+padding:20px;
+border-radius:25px;
+border:2px solid #00ff66;
+box-shadow:0 0 25px #00ff66;
+margin-top:30px;
+margin-bottom:30px;
+}
+
+.box h1{
+text-align:center;
+color:#00ff66;
+}
+
+.copy{
+text-align:center;
+color:#00ff66;
+margin-bottom:15px;
+}
+
+/* RESULTADOS */
+
+.item{
+background:#1b1b1b;
+padding:12px;
+margin-top:10px;
+border-radius:12px;
+display:flex;
+justify-content:space-between;
+}
+
+/* VIP */
+
+.vip-box{
+margin-top:25px;
+}
+
+.vip-box h2{
+text-align:center;
+margin-bottom:20px;
+color:#00ff66;
+}
+
+.vip-card{
+background:#1b1b1b;
+padding:20px;
+border-radius:20px;
+margin-top:15px;
+border:2px solid #333;
+}
+
+.vip-card h3{
+text-align:center;
+margin-bottom:15px;
+}
+
+.vip-card p{
+margin-top:8px;
+}
+
+.premium{
+border:2px solid #00ff66;
+box-shadow:0 0 20px #00ff66;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="login">
+
+<div class="login-box">
+
+<h1>BRISA SENSE</h1>
+
+<input type="text" id="usuario" placeholder="Usuário">
+
+<input type="password" id="senha" placeholder="Senha">
+
+<button onclick="entrar()">
+ENTRAR
+</button>
+
+</div>
+
+</div>
+
+<!-- APP -->
+
+<div id="app">
+
+<!-- FREE -->
+
+<div class="box" id="freePage">
+
+<h1>BRISA SENSE FREE</h1>
+
+<div class="copy">
+✨ Gerador Aleatório
+</div>
+
+<input type="text" id="vipcode" placeholder="Código VIP">
+
+<button onclick="ativarVip()">
+ATIVAR VIP 👑
+</button>
+
+<button onclick="gerarFree()">
+GERAR SENSI ALEATÓRIA 🔥
+</button>
+
+<!-- RESULTADOS -->
+
+<div class="item">
+<span>Geral</span>
+<span id="geral">---</span>
+</div>
+
+<div class="item">
+<span>Ponto Vermelho</span>
+<span id="red">---</span>
+</div>
+
+<div class="item">
+<span>Mira 2x</span>
+<span id="x2">---</span>
+</div>
+
+<div class="item">
+<span>Mira 4x</span>
+<span id="x4">---</span>
+</div>
+
+<div class="item">
+<span>AWM</span>
+<span id="awm">---</span>
+</div>
+
+<div class="item">
+<span>Botão</span>
+<span id="botao">---</span>
+</div>
+
+<!-- PLANOS -->
+
+<div class="vip-box">
+
+<h2>PLANO VIP 👑</h2>
+
+<div class="vip-card">
+
+<h3>FREE</h3>
+
+<p>✔ Gerador aleatório</p>
+<p>✔ Sensi básica</p>
+<p>❌ Modelo celular</p>
+<p>❌ Polegadas</p>
+
+<button>
+PLANO ATUAL
+</button>
+
+</div>
+
+<div class="vip-card premium">
+
+<h3>VIP PREMIUM 🔥</h3>
+
+<p>✔ DPI personalizada</p>
+<p>✔ Modelo do celular</p>
+<p>✔ Polegadas da tela</p>
+<p>✔ IA avançada</p>
+<p>✔ Melhor capa</p>
+
+<button onclick="comprarVip()">
+COMPRAR VIP
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- VIP PAGE -->
+
+<div class="box" id="vipPage" style="display:none;">
+
+<h1>BRISA SENSE VIP 👑</h1>
+
+<div class="copy">
+🔥 IA Ultra Precisa
+</div>
+
+<input type="number" id="vipDpi" placeholder="Digite sua DPI">
+
+<input type="text" id="vipTela" placeholder="Polegadas da Tela">
+
+<input type="text" id="vipModelo" placeholder="Modelo do Celular">
+
+<button onclick="gerarVip()">
+GERAR SENSI VIP 🔥
+</button>
+
+<!-- RESULTADOS VIP -->
+
+<div class="item">
+<span>Geral</span>
+<span id="vipgeral">---</span>
+</div>
+
+<div class="item">
+<span>Ponto Vermelho</span>
+<span id="vipred">---</span>
+</div>
+
+<div class="item">
+<span>Mira 2x</span>
+<span id="vipx2">---</span>
+</div>
+
+<div class="item">
+<span>Mira 4x</span>
+<span id="vipx4">---</span>
+</div>
+
+<div class="item">
+<span>AWM</span>
+<span id="vipawm">---</span>
+</div>
+
+<div class="item">
+<span>Botão</span>
+<span id="vipbotao">---</span>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* LOGIN */
+
+function entrar(){
+
+let usuario =
+document.getElementById('usuario').value
+
+let senha =
+document.getElementById('senha').value
+
+if(usuario == "brisa" && senha == "123"){
+
+document.getElementById('login').style.display = "none"
+
+document.getElementById('app').style.display = "flex"
+
+}else{
+
+alert("Usuário ou senha incorretos")
+
+}
+
+}
+
+/* FREE */
+
+function gerarFree(){
+
+let geral =
+Math.floor(Math.random() * 41) + 160
+
+let red =
+Math.floor(Math.random() * 41) + 150
+
+let x2 =
+Math.floor(Math.random() * 41) + 120
+
+let x4 =
+Math.floor(Math.random() * 41) + 100
+
+let awm =
+Math.floor(Math.random() * 31) + 50
+
+let tamanhoBotao =
+Math.floor(Math.random() * 16) + 55
+
+document.getElementById('geral').innerHTML = geral
+document.getElementById('red').innerHTML = red
+document.getElementById('x2').innerHTML = x2
+document.getElementById('x4').innerHTML = x4
+document.getElementById('awm').innerHTML = awm
+document.getElementById('botao').innerHTML =
+tamanhoBotao + '%'
+
+}
+
+/* SISTEMA VIP */
+
+function ativarVip(){
+
+let codigo =
+document.getElementById('vipcode').value
+
+let agora = new Date().getTime()
+
+let dataVip =
+localStorage.getItem("vipData")
+
+let codigoSalvo =
+localStorage.getItem("vipCodigo")
+
+/* PRIMEIRA ATIVAÇÃO */
+
+if(!dataVip){
+
+if(
+codigo == "BRISA2026" ||
+codigo == "VIPBRISA"
+){
+
+localStorage.setItem("vipData", agora)
+localStorage.setItem("vipCodigo", codigo)
+
+alert("VIP ATIVADO 👑🔥")
+
+abrirVip()
+
+}else{
+
+alert("Código inválido")
+
+}
+
+return
+
+}
+
+/* 7 DIAS */
+
+let seteDias =
+7 * 24 * 60 * 60 * 1000
+
+let tempo =
+agora - parseInt(dataVip)
+
+/* EXPIRADO */
+
+if(tempo >= seteDias){
+
+let novoCodigo =
+"BRISA" +
+Math.floor(Math.random() * 99999)
+
+localStorage.setItem("vipCodigo", novoCodigo)
+localStorage.setItem("vipData", agora)
+
+/* ENVIA PRO ZAP */
+
+window.location.href =
+"https://wa.me/5583998161803?text=Novo%20código%20VIP:%20" + novoCodigo
+
+alert("VIP expirado ⚠️ Novo código gerado")
+
+return
+
+}
+
+/* LIBERAR VIP */
+
+if(codigo == codigoSalvo){
+
+alert("VIP ATIVADO 👑🔥")
+
+abrirVip()
+
+}else{
+
+alert("Código inválido")
+
+}
+
+}
+
+/* ABRIR VIP */
+
+function abrirVip(){
+
+document.getElementById('freePage')
+.style.display = "none"
+
+document.getElementById('vipPage')
+.style.display = "block"
+
+}
+
+/* GERADOR VIP */
+
+function gerarVip(){
+
+let dpi =
+parseInt(document.getElementById('vipDpi').value)
+
+let tela =
+parseFloat(document.getElementById('vipTela').value)
+
+let modelo =
+document.getElementById('vipModelo').value.toLowerCase()
+
+if(!dpi || !tela || !modelo){
+
+alert("Preencha tudo")
+
+return
+
+}
+
+let geral =
+Math.floor((dpi * 0.32) + 35)
+
+let red =
+Math.floor((dpi * 0.30) + 30)
+
+let x2 =
+Math.floor((dpi * 0.26) + 20)
+
+let x4 =
+Math.floor((dpi * 0.22) + 15)
+
+let awm =
+Math.floor((dpi * 0.12) + 10)
+
+if(geral > 200) geral = 200
+if(red > 200) red = 200
+if(x2 > 200) x2 = 200
+if(x4 > 200) x4 = 200
+if(awm > 100) awm = 100
+
+let tamanhoBotao = 58
+
+document.getElementById('vipgeral').innerHTML = geral
+document.getElementById('vipred').innerHTML = red
+document.getElementById('vipx2').innerHTML = x2
+document.getElementById('vipx4').innerHTML = x4
+document.getElementById('vipawm').innerHTML = awm
+document.getElementById('vipbotao').innerHTML =
+tamanhoBotao + '%'
+
+}
+
+/* WHATSAPP */
+
+function comprarVip(){
+
+window.location.href =
+"https://wa.me/5583998161803?text=Quero%20comprar%20o%20VIP%20do%20Brisa%20Sense"
+
+}
+
+</script>
+
+</body>
+</html>
